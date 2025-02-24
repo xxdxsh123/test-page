@@ -31,61 +31,73 @@ function analyzeZodiac(formData) {
         setTimeout(() => {
             try {
                 // 获取表单数据
-                const zodiac = formData.get('zodiac');
+                const zodiacSign = formData.get('zodiacSign');
                 const period = formData.get('period');
-                const aspects = formData.getAll('aspects');
                 
                 // 获取星座名称
-                const zodiacName = document.querySelector(`[data-zodiac="${zodiac}"] .zodiac-name`).textContent;
+                const zodiacNames = {
+                    aries: '白羊座',
+                    taurus: '金牛座',
+                    gemini: '双子座',
+                    cancer: '巨蟹座',
+                    leo: '狮子座',
+                    virgo: '处女座',
+                    libra: '天秤座',
+                    scorpio: '天蝎座',
+                    sagittarius: '射手座',
+                    capricorn: '摩羯座',
+                    aquarius: '水瓶座',
+                    pisces: '双鱼座'
+                };
                 
                 // 获取周期文本
-                const periodText = {
+                const periodTexts = {
                     today: '今日',
                     week: '本周',
                     month: '本月',
                     year: '年度'
-                }[period];
+                };
                 
                 // 模拟分析结果
                 const result = {
                     basicInfo: {
-                        zodiac: zodiacName,
-                        period: periodText,
+                        zodiac: zodiacNames[zodiacSign] || '未知星座',
+                        period: periodTexts[period] || '未知周期',
                         luckyNumber: Math.floor(Math.random() * 9) + 1,
                         luckyColor: ['红色', '蓝色', '绿色', '紫色', '金色'][Math.floor(Math.random() * 5)],
                         luckyDirection: ['东', '南', '西', '北'][Math.floor(Math.random() * 4)]
                     },
                     analysis: {
-                        overview: aspects.includes('overview') ? {
+                        overview: {
                             title: '综合运势',
                             content: '整体运势不错，充满活力和创造力。建议保持积极乐观的心态，把握机会。',
                             score: Math.floor(Math.random() * 20 + 80),
                             keywords: ['活力', '创造力', '机遇']
-                        } : null,
-                        love: aspects.includes('love') ? {
+                        },
+                        love: {
                             title: '感情运势',
                             content: '感情运势稳定，单身者有机会遇到心仪对象，已有伴侣的感情更加甜蜜。',
                             score: Math.floor(Math.random() * 20 + 80),
                             suggestions: ['保持开放心态', '多参与社交活动', '关心伴侣感受']
-                        } : null,
-                        career: aspects.includes('career') ? {
+                        },
+                        career: {
                             title: '事业运势',
                             content: '事业发展顺利，有望获得上司赏识。工作中要注意细节，保持谨慎态度。',
                             score: Math.floor(Math.random() * 20 + 80),
                             opportunities: ['升职机会', '项目合作', '技能提升']
-                        } : null,
-                        wealth: aspects.includes('wealth') ? {
+                        },
+                        wealth: {
                             title: '财运分析',
                             content: '财运走势向好，可能有意外收获。投资理财需要谨慎，避免冲动消费。',
                             score: Math.floor(Math.random() * 20 + 80),
                             tips: ['合理投资', '控制支出', '储蓄计划']
-                        } : null,
-                        health: aspects.includes('health') ? {
+                        },
+                        health: {
                             title: '健康运势',
                             content: '身体状况良好，但要注意作息规律，适当运动，保持充足睡眠。',
                             score: Math.floor(Math.random() * 20 + 80),
                             advice: ['规律作息', '均衡饮食', '适量运动']
-                        } : null
+                        }
                     },
                     suggestions: [
                         '保持积极乐观的心态',
