@@ -1,33 +1,9 @@
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function() {
-    // 设置日期选择器的最大值为今天
-    const birthDateInput = document.getElementById('birthDate');
-    const today = new Date().toISOString().split('T')[0];
-    birthDateInput.max = today;
-    
     // 监听表单有效提交事件
     const form = document.getElementById('fortuneForm');
     form.addEventListener('validSubmit', handleFormSubmit);
-
-    // 确保至少选择一个分析维度
-    const checkboxes = document.querySelectorAll('input[name="dimensions"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', validateDimensions);
-    });
 });
-
-// 验证至少选择一个分析维度
-function validateDimensions() {
-    const checkboxes = document.querySelectorAll('input[name="dimensions"]:checked');
-    const submitButton = document.querySelector('.submit-button');
-    
-    if (checkboxes.length === 0) {
-        testUtils.showError('请至少选择一个分析维度');
-        submitButton.disabled = true;
-    } else {
-        submitButton.disabled = false;
-    }
-}
 
 // 处理表单提交
 async function handleFormSubmit(event) {

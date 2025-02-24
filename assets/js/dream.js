@@ -7,12 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('dreamForm');
     form.addEventListener('validSubmit', handleFormSubmit);
 
-    // 确保至少选择一个分析维度
-    const checkboxes = document.querySelectorAll('input[name="aspects"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', validateAspects);
-    });
-
     // 监听文本输入，实时更新字数
     const dreamContent = document.getElementById('dreamContent');
     const charCount = document.getElementById('charCount');
@@ -27,19 +21,6 @@ function initDateInput() {
     const today = new Date().toISOString().split('T')[0];
     dreamDateInput.max = today;
     dreamDateInput.value = today;
-}
-
-// 验证至少选择一个分析维度
-function validateAspects() {
-    const checkboxes = document.querySelectorAll('input[name="aspects"]:checked');
-    const submitButton = document.querySelector('.submit-button');
-    
-    if (checkboxes.length === 0) {
-        testUtils.showError('请至少选择一个分析维度');
-        submitButton.disabled = true;
-    } else {
-        submitButton.disabled = false;
-    }
 }
 
 // 处理表单提交
