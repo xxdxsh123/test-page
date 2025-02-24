@@ -34,7 +34,7 @@ async function handleFormSubmit(event) {
     const formData = event.detail.formData;
     
     // 显示加载动画
-    testUtils.showLoading('正在分析命理...');
+    testUtils.showLoading('正在分析姓名运势...');
     
     try {
         // 模拟API调用
@@ -42,7 +42,7 @@ async function handleFormSubmit(event) {
         displayResults(result);
         testUtils.showSuccess('分析完成！');
     } catch (error) {
-        testUtils.showError(error.message || '分析过程中出现错误，请重试');
+        testUtils.showError(error.message || '分析运势时出现错误，请重试');
     } finally {
         testUtils.hideLoading();
     }
@@ -57,55 +57,32 @@ function analyzeFortune(formData) {
                 // 获取表单数据
                 const fullName = formData.get('fullName');
                 const gender = formData.get('gender');
-                const birthDate = formData.get('birthDate');
-                const dimensions = formData.getAll('dimensions');
                 
                 // 模拟分析结果
                 const result = {
                     basicInfo: {
                         name: fullName,
-                        gender: gender === 'male' ? '男' : '女',
-                        birthDate: new Date(birthDate).toLocaleDateString('zh-CN'),
-                        nameScore: Math.floor(Math.random() * 20 + 80) // 80-100分
+                        gender: gender === 'male' ? '男' : '女'
                     },
                     analysis: {
-                        wuxing: dimensions.includes('wuxing') ? {
-                            title: '五行分析',
-                            content: '您的名字五行属性为水木相生，具有很强的成长性和适应能力。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        career: dimensions.includes('career') ? {
-                            title: '事业运势',
-                            content: '事业发展稳健，有望在未来3-5年内获得重要突破。领导能力突出，适合管理岗位。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        love: dimensions.includes('love') ? {
-                            title: '感情姻缘',
-                            content: '感情运势温和，明年有望遇到理想伴侣。建议多参加社交活动，保持开放心态。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        wealth: dimensions.includes('wealth') ? {
-                            title: '财运分析',
-                            content: '财运走势向上，适合稳健投资。今年下半年可能有意外收获。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        health: dimensions.includes('health') ? {
-                            title: '健康运势',
-                            content: '整体健康状况良好，建议注意作息规律，适当运动。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null
+                        summary: '您的姓名蕴含着独特的能量场，整体运势呈上升趋势。',
+                        wuxing: '您的姓名五行属性为：金木水火土分布均衡，显示出良好的平衡性。',
+                        career: '事业发展稳健，有望在未来3-5年内获得重要突破。',
+                        love: '感情生活和谐，易得贵人相助，桃花运旺盛。',
+                        wealth: '财运走势良好，适合进行稳健的理财投资。',
+                        health: '健康状况整体良好，建议注意作息规律。'
                     },
                     suggestions: [
                         '建议在事业上保持积极进取的态度',
-                        '感情方面要学会适度表达',
-                        '投资理财需要稳健为主',
+                        '感情方面可以适当主动出击',
+                        '理财投资宜稳健为主',
                         '注意保持良好的作息习惯'
                     ]
                 };
                 
                 resolve(result);
             } catch (error) {
-                reject(new Error('生成分析结果时出现错误'));
+                reject(new Error('分析运势时出现错误'));
             }
         }, 2000); // 模拟2秒的API延迟
     });
@@ -114,141 +91,51 @@ function analyzeFortune(formData) {
 // 显示结果
 function displayResults(result) {
     const resultSection = document.getElementById('resultSection');
-    const fortuneResults = resultSection.querySelector('.fortune-results');
+    const nameResults = document.querySelector('.fortune-results');
     
-    // 清空现有结果
-    fortuneResults.innerHTML = '';
+    // 清空之前的结果
+    nameResults.innerHTML = '';
     
     // 创建基本信息卡片
     const basicInfoCard = document.createElement('div');
-    basicInfoCard.classList.add('result-card', 'basic-info');
+    basicInfoCard.className = 'result-card';
     basicInfoCard.innerHTML = `
         <h3>基本信息</h3>
-        <div class="info-grid">
-            <div class="info-item">
-                <span class="label">姓名：</span>
-                <span class="value">${result.basicInfo.name}</span>
-            </div>
-            <div class="info-item">
-                <span class="label">性别：</span>
-                <span class="value">${result.basicInfo.gender}</span>
-            </div>
-            <div class="info-item">
-                <span class="label">出生日期：</span>
-                <span class="value">${result.basicInfo.birthDate}</span>
-            </div>
-            <div class="info-item">
-                <span class="label">姓名评分：</span>
-                <span class="value score">${result.basicInfo.nameScore}分</span>
-            </div>
+        <p>姓名：${result.basicInfo.name}</p>
+        <p>性别：${result.basicInfo.gender}</p>
+    `;
+    nameResults.appendChild(basicInfoCard);
+    
+    // 创建分析结果卡片
+    const analysisCard = document.createElement('div');
+    analysisCard.className = 'result-card';
+    analysisCard.innerHTML = `
+        <h3>运势分析</h3>
+        <p class="analysis-summary">${result.analysis.summary}</p>
+        <div class="analysis-details">
+            <p>${result.analysis.wuxing}</p>
+            <p>${result.analysis.career}</p>
+            <p>${result.analysis.love}</p>
+            <p>${result.analysis.wealth}</p>
+            <p>${result.analysis.health}</p>
         </div>
     `;
-    fortuneResults.appendChild(basicInfoCard);
-    
-    // 创建各维度分析卡片
-    Object.values(result.analysis).forEach(analysis => {
-        if (analysis) {
-            const analysisCard = document.createElement('div');
-            analysisCard.classList.add('result-card', 'analysis-item');
-            analysisCard.innerHTML = `
-                <div class="analysis-header">
-                    <h3>${analysis.title}</h3>
-                    <span class="score">${analysis.score}分</span>
-                </div>
-                <p class="analysis-content">${analysis.content}</p>
-            `;
-            fortuneResults.appendChild(analysisCard);
-        }
-    });
+    nameResults.appendChild(analysisCard);
     
     // 创建建议卡片
     const suggestionsCard = document.createElement('div');
-    suggestionsCard.classList.add('result-card', 'suggestions');
+    suggestionsCard.className = 'result-card';
     suggestionsCard.innerHTML = `
-        <h3>改善建议</h3>
+        <h3>运势建议</h3>
         <ul>
             ${result.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
         </ul>
     `;
-    fortuneResults.appendChild(suggestionsCard);
-    
-    // 添加结果样式
-    const style = document.createElement('style');
-    style.textContent = `
-        .result-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .result-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .info-item .label {
-            color: var(--light-text);
-        }
-        
-        .info-item .value {
-            font-weight: 500;
-        }
-        
-        .score {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .analysis-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .analysis-content {
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        .suggestions ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .suggestions li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-        
-        .suggestions li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-    `;
-    document.head.appendChild(style);
+    nameResults.appendChild(suggestionsCard);
     
     // 显示结果区域
     resultSection.style.display = 'block';
     
     // 平滑滚动到结果区域
-    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    resultSection.scrollIntoView({ behavior: 'smooth' });
 } 

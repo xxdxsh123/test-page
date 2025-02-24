@@ -18,7 +18,7 @@
         <!-- 测试表单区域 -->
         <div class="test-form-container">
             <h1 class="page-title">八字运势测试</h1>
-            <p class="page-subtitle">基于生辰八字的命理运势分析</p>
+            <p class="page-subtitle">精准分析您的八字命盘</p>
 
             <form id="baziForm" class="test-form">
                 <!-- 姓名输入 -->
@@ -49,62 +49,14 @@
                 <!-- 出生日期和时间 -->
                 <div class="form-group">
                     <label for="birthDateTime">出生日期和时间</label>
-                    <div class="datetime-group">
-                        <input type="date" id="birthDate" name="birthDate" required>
-                        <input type="time" id="birthTime" name="birthTime" required
-                               step="900"> <!-- 15分钟间隔 -->
-                    </div>
-                    <div class="input-hint">请尽可能准确填写出生时间，时间精确到15分钟</div>
+                    <input type="datetime-local" id="birthDateTime" name="birthDateTime" required>
                 </div>
 
                 <!-- 出生地点 -->
                 <div class="form-group">
                     <label for="birthPlace">出生地点</label>
-                    <div class="place-group">
-                        <select id="province" name="province" required>
-                            <option value="">请选择省份</option>
-                            <!-- JavaScript将动态填充省份选项 -->
-                        </select>
-                        <select id="city" name="city" required>
-                            <option value="">请选择城市</option>
-                            <!-- JavaScript将动态填充城市选项 -->
-                        </select>
-                        <select id="district" name="district" required>
-                            <option value="">请选择区县</option>
-                            <!-- JavaScript将动态填充区县选项 -->
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 分析范围选择 -->
-                <div class="form-group">
-                    <label>分析范围（可多选）</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="personality" checked>
-                            <span>性格分析</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="career" checked>
-                            <span>事业运势</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="wealth" checked>
-                            <span>财运分析</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="love" checked>
-                            <span>感情姻缘</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="health" checked>
-                            <span>健康运势</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="aspects" value="yearly" checked>
-                            <span>流年运势</span>
-                        </label>
-                    </div>
+                    <input type="text" id="birthPlace" name="birthPlace" required
+                           placeholder="请输入出生地点（如：北京市海淀区）">
                 </div>
 
                 <!-- 提交按钮 -->
@@ -129,7 +81,7 @@
 
     <!-- 页脚信息 -->
     <footer class="footer">
-        <p>© 2025 AI运势测试 - 您的专属运势顾问</p>
+        <p>2025 AI运势测试 - 您的专属运势顾问</p>
     </footer>
 
     <script src="../../assets/js/test-page.js"></script>

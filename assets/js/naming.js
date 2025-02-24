@@ -1,26 +1,9 @@
 // 等待DOM加载完成
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化年份选择器
-    initBirthYearSelect();
-    
     // 监听表单有效提交事件
     const form = document.getElementById('namingForm');
     form.addEventListener('validSubmit', handleFormSubmit);
 });
-
-// 初始化年份选择器
-function initBirthYearSelect() {
-    const birthYearSelect = document.getElementById('birthYear');
-    const currentYear = new Date().getFullYear();
-    const startYear = 1900;
-    
-    for (let year = currentYear; year >= startYear; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year + '年';
-        birthYearSelect.appendChild(option);
-    }
-}
 
 // 处理表单提交
 async function handleFormSubmit(event) {
@@ -50,7 +33,6 @@ function generateNames(formData) {
                 // 获取表单数据
                 const lastName = formData.get('lastName');
                 const gender = formData.get('gender');
-                const birthYear = formData.get('birthYear');
                 const requirements = formData.get('requirements');
                 
                 // 模拟生成的名字和解释
