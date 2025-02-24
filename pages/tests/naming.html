@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能起名 - AI运势测试</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/test-page.css">
+</head>
+<body>
+    <div class="container test-page">
+        <!-- 返回按钮 -->
+        <a href="../select.html" class="back-button">
+            <span class="back-icon">←</span>
+            返回选择
+        </a>
+
+        <!-- 测试表单区域 -->
+        <div class="test-form-container">
+            <h1 class="page-title">AI智能起名</h1>
+            <p class="page-subtitle">智能分析姓氏特点，生成吉祥如意的名字</p>
+
+            <form id="namingForm" class="test-form">
+                <!-- 姓氏输入 -->
+                <div class="form-group">
+                    <label for="lastName">您的姓氏</label>
+                    <input type="text" id="lastName" name="lastName" required
+                           placeholder="请输入姓氏（如：张、王）"
+                           maxlength="2"
+                           pattern="[\u4e00-\u9fa5]{1,2}">
+                    <div class="input-hint">请输入1-2个汉字的姓氏</div>
+                </div>
+
+                <!-- 性别选择 -->
+                <div class="form-group">
+                    <label>性别选择</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" required>
+                            <span>男</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female">
+                            <span>女</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 出生年份 -->
+                <div class="form-group">
+                    <label for="birthYear">出生年份</label>
+                    <select id="birthYear" name="birthYear" required>
+                        <option value="">请选择出生年份</option>
+                        <!-- JavaScript将动态填充年份选项 -->
+                    </select>
+                </div>
+
+                <!-- 起名要求 -->
+                <div class="form-group">
+                    <label for="requirements">起名要求或偏好</label>
+                    <textarea id="requirements" name="requirements"
+                              placeholder="请输入您对名字的特殊要求，如：喜欢带某个字、想要表达的含义等"
+                              maxlength="200"></textarea>
+                    <div class="char-counter">
+                        <span id="charCount">0</span>/200
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <button type="submit" class="submit-button">开始智能起名</button>
+            </form>
+        </div>
+
+        <!-- 结果展示区域（初始隐藏） -->
+        <div id="resultSection" class="result-section" style="display: none;">
+            <h2 class="result-title">为您推荐的名字</h2>
+            <div class="name-results">
+                <!-- 结果将由JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在智能分析姓名...</div>
+    </div>
+
+    <!-- 页脚信息 -->
+    <footer class="footer">
+        <p>© 2024 AI运势测试 - 您的专属运势顾问</p>
+    </footer>
+
+    <script src="../../assets/js/test-page.js"></script>
+    <script src="../../assets/js/naming.js"></script>
+</body>
+</html> 

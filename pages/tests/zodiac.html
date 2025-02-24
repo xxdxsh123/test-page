@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星座运势测试 - AI运势测试</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/test-page.css">
+</head>
+<body>
+    <div class="container test-page">
+        <!-- 返回按钮 -->
+        <a href="../select.html" class="back-button">
+            <span class="back-icon">←</span>
+            返回选择
+        </a>
+
+        <!-- 测试表单区域 -->
+        <div class="test-form-container">
+            <h1 class="page-title">星座运势测试</h1>
+            <p class="page-subtitle">专业的星座运势分析与指导</p>
+
+            <form id="zodiacForm" class="test-form">
+                <!-- 星座选择 -->
+                <div class="form-group">
+                    <label>选择您的星座</label>
+                    <div class="zodiac-grid">
+                        <label class="zodiac-item" data-zodiac="aries">
+                            <input type="radio" name="zodiac" value="aries" required>
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♈</span>
+                                <span class="zodiac-name">白羊座</span>
+                                <span class="zodiac-date">3.21-4.19</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="taurus">
+                            <input type="radio" name="zodiac" value="taurus">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♉</span>
+                                <span class="zodiac-name">金牛座</span>
+                                <span class="zodiac-date">4.20-5.20</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="gemini">
+                            <input type="radio" name="zodiac" value="gemini">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♊</span>
+                                <span class="zodiac-name">双子座</span>
+                                <span class="zodiac-date">5.21-6.21</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="cancer">
+                            <input type="radio" name="zodiac" value="cancer">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♋</span>
+                                <span class="zodiac-name">巨蟹座</span>
+                                <span class="zodiac-date">6.22-7.22</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="leo">
+                            <input type="radio" name="zodiac" value="leo">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♌</span>
+                                <span class="zodiac-name">狮子座</span>
+                                <span class="zodiac-date">7.23-8.22</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="virgo">
+                            <input type="radio" name="zodiac" value="virgo">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♍</span>
+                                <span class="zodiac-name">处女座</span>
+                                <span class="zodiac-date">8.23-9.22</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="libra">
+                            <input type="radio" name="zodiac" value="libra">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♎</span>
+                                <span class="zodiac-name">天秤座</span>
+                                <span class="zodiac-date">9.23-10.23</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="scorpio">
+                            <input type="radio" name="zodiac" value="scorpio">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♏</span>
+                                <span class="zodiac-name">天蝎座</span>
+                                <span class="zodiac-date">10.24-11.22</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="sagittarius">
+                            <input type="radio" name="zodiac" value="sagittarius">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♐</span>
+                                <span class="zodiac-name">射手座</span>
+                                <span class="zodiac-date">11.23-12.21</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="capricorn">
+                            <input type="radio" name="zodiac" value="capricorn">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♑</span>
+                                <span class="zodiac-name">摩羯座</span>
+                                <span class="zodiac-date">12.22-1.19</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="aquarius">
+                            <input type="radio" name="zodiac" value="aquarius">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♒</span>
+                                <span class="zodiac-name">水瓶座</span>
+                                <span class="zodiac-date">1.20-2.18</span>
+                            </div>
+                        </label>
+                        <label class="zodiac-item" data-zodiac="pisces">
+                            <input type="radio" name="zodiac" value="pisces">
+                            <div class="zodiac-content">
+                                <span class="zodiac-icon">♓</span>
+                                <span class="zodiac-name">双鱼座</span>
+                                <span class="zodiac-date">2.19-3.20</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 运势周期选择 -->
+                <div class="form-group">
+                    <label>运势周期</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="period" value="today" required>
+                            <span>今日运势</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="period" value="week">
+                            <span>本周运势</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="period" value="month">
+                            <span>本月运势</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="period" value="year">
+                            <span>年度运势</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 分析维度 -->
+                <div class="form-group">
+                    <label>分析维度（可多选）</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="overview" checked>
+                            <span>综合运势</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="love" checked>
+                            <span>感情运势</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="career" checked>
+                            <span>事业运势</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="wealth" checked>
+                            <span>财运分析</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="health" checked>
+                            <span>健康运势</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <button type="submit" class="submit-button">开始分析</button>
+            </form>
+        </div>
+
+        <!-- 结果展示区域（初始隐藏） -->
+        <div id="resultSection" class="result-section" style="display: none;">
+            <h2 class="result-title">运势分析结果</h2>
+            <div class="zodiac-results">
+                <!-- 结果将由JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在分析星座运势...</div>
+    </div>
+
+    <!-- 页脚信息 -->
+    <footer class="footer">
+        <p>© 2024 AI运势测试 - 您的专属运势顾问</p>
+    </footer>
+
+    <script src="../../assets/js/test-page.js"></script>
+    <script src="../../assets/js/zodiac.js"></script>
+</body>
+</html> 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名字运势测试 - AI运势测试</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/test-page.css">
+</head>
+<body>
+    <div class="container test-page">
+        <!-- 返回按钮 -->
+        <a href="../select.html" class="back-button">
+            <span class="back-icon">←</span>
+            返回选择
+        </a>
+
+        <!-- 测试表单区域 -->
+        <div class="test-form-container">
+            <h1 class="page-title">名字运势测试</h1>
+            <p class="page-subtitle">深度解析姓名蕴含的命运信息</p>
+
+            <form id="fortuneForm" class="test-form">
+                <!-- 姓名输入 -->
+                <div class="form-group">
+                    <label for="fullName">您的姓名</label>
+                    <input type="text" id="fullName" name="fullName" required
+                           placeholder="请输入您的完整姓名"
+                           maxlength="5"
+                           pattern="[\u4e00-\u9fa5]{2,5}">
+                    <div class="input-hint">请输入2-5个汉字的完整姓名</div>
+                </div>
+
+                <!-- 性别选择 -->
+                <div class="form-group">
+                    <label>性别选择</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" required>
+                            <span>男</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female">
+                            <span>女</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 出生日期 -->
+                <div class="form-group">
+                    <label for="birthDate">出生日期</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+
+                <!-- 分析维度选择 -->
+                <div class="form-group">
+                    <label>分析维度（可多选）</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="dimensions" value="wuxing" checked>
+                            <span>五行分析</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="dimensions" value="career" checked>
+                            <span>事业运势</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="dimensions" value="love" checked>
+                            <span>感情姻缘</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="dimensions" value="wealth" checked>
+                            <span>财运分析</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="dimensions" value="health" checked>
+                            <span>健康运势</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <button type="submit" class="submit-button">开始运势分析</button>
+            </form>
+        </div>
+
+        <!-- 结果展示区域（初始隐藏） -->
+        <div id="resultSection" class="result-section" style="display: none;">
+            <h2 class="result-title">运势分析结果</h2>
+            <div class="fortune-results">
+                <!-- 结果将由JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在分析命理...</div>
+    </div>
+
+    <!-- 页脚信息 -->
+    <footer class="footer">
+        <p>© 2024 AI运势测试 - 您的专属运势顾问</p>
+    </footer>
+
+    <script src="../../assets/js/test-page.js"></script>
+    <script src="../../assets/js/fortune.js"></script>
+</body>
+</html> 

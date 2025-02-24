@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周公解梦 - AI运势测试</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/test-page.css">
+</head>
+<body>
+    <div class="container test-page">
+        <!-- 返回按钮 -->
+        <a href="../select.html" class="back-button">
+            <span class="back-icon">←</span>
+            返回选择
+        </a>
+
+        <!-- 测试表单区域 -->
+        <div class="test-form-container">
+            <h1 class="page-title">周公解梦</h1>
+            <p class="page-subtitle">智能解析梦境寓意与预示</p>
+
+            <form id="dreamForm" class="test-form">
+                <!-- 梦境描述 -->
+                <div class="form-group">
+                    <label for="dreamContent">梦境描述</label>
+                    <textarea id="dreamContent" name="dreamContent" required
+                              placeholder="请详细描述您的梦境内容，包括场景、人物、情节等"
+                              minlength="10"
+                              maxlength="1000"></textarea>
+                    <div class="char-counter">
+                        <span id="charCount">0</span>/1000
+                    </div>
+                </div>
+
+                <!-- 梦境时间 -->
+                <div class="form-group">
+                    <label for="dreamDate">梦境时间</label>
+                    <input type="date" id="dreamDate" name="dreamDate" required>
+                    <div class="input-hint">请选择做梦的日期</div>
+                </div>
+
+                <!-- 心情选择 -->
+                <div class="form-group">
+                    <label>梦醒时的心情</label>
+                    <div class="mood-group">
+                        <label class="mood-label">
+                            <input type="radio" name="mood" value="happy" required>
+                            <span>😊 开心</span>
+                        </label>
+                        <label class="mood-label">
+                            <input type="radio" name="mood" value="neutral">
+                            <span>😐 平静</span>
+                        </label>
+                        <label class="mood-label">
+                            <input type="radio" name="mood" value="anxious">
+                            <span>😰 焦虑</span>
+                        </label>
+                        <label class="mood-label">
+                            <input type="radio" name="mood" value="scared">
+                            <span>😨 害怕</span>
+                        </label>
+                        <label class="mood-label">
+                            <input type="radio" name="mood" value="confused">
+                            <span>🤔 困惑</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 分析维度 -->
+                <div class="form-group">
+                    <label>分析维度（可多选）</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="meaning" checked>
+                            <span>梦境寓意</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="fortune" checked>
+                            <span>运势预测</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aspects" value="suggestion" checked>
+                            <span>行动建议</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <button type="submit" class="submit-button">开始解梦</button>
+            </form>
+        </div>
+
+        <!-- 结果展示区域（初始隐藏） -->
+        <div id="resultSection" class="result-section" style="display: none;">
+            <h2 class="result-title">解梦结果</h2>
+            <div class="dream-results">
+                <!-- 结果将由JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在解析梦境...</div>
+    </div>
+
+    <!-- 页脚信息 -->
+    <footer class="footer">
+        <p>© 2024 AI运势测试 - 您的专属运势顾问</p>
+    </footer>
+
+    <script src="../../assets/js/test-page.js"></script>
+    <script src="../../assets/js/dream.js"></script>
+</body>
+</html> 
