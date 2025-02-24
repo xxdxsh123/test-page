@@ -3,7 +3,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听表单有效提交事件
     const form = document.getElementById('baziForm');
     form.addEventListener('validSubmit', handleFormSubmit);
+
+    // 初始化日期验证
+    initDateValidation();
 });
+
+// 初始化日期验证
+function initDateValidation() {
+    const yearInput = document.getElementById('birthYear');
+    const monthInput = document.getElementById('birthMonth');
+    const dayInput = document.getElementById('birthDay');
+
+    // 设置年份范围
+    const currentYear = new Date().getFullYear();
+    yearInput.max = currentYear;
+
+    // 监听月份变化，更新日期范围
+    monthInput.addEventListener('change', function() {
+        updateDayRange(yearInput.value, this.value, dayInput);
+    });
+
+    // 监听年份变化，如果是2月份则更新日期范围
+    yearInput.addEventListener('change', function() {
+        if(monthInput.value === '2') {
+            updateDayRange(this.value, monthInput.value, dayInput);
+        }
+    });
+}
+
+// 更新日期范围
+function updateDayRange(year, month, dayInput) {
+    if(!year || !month) return;
+
+    const daysInMonth = new Date(year, month, 0).getDate();
+    dayInput.max = daysInMonth;
+
+    // 如果当前选择的日期超过了最大值，则设置为最大值
+    if(parseInt(dayInput.value) > daysInMonth) {
+        dayInput.value = daysInMonth;
+    }
+}
 
 // 处理表单提交
 async function handleFormSubmit(event) {
@@ -33,20 +72,19 @@ function analyzeBazi(formData) {
                 // 获取表单数据
                 const fullName = formData.get('fullName');
                 const gender = formData.get('gender');
-                const birthDate = formData.get('birthDate');
+                const birthYear = formData.get('birthYear');
+                const birthMonth = formData.get('birthMonth');
+                const birthDay = formData.get('birthDay');
                 const birthTime = formData.get('birthTime');
-                const province = formData.get('province');
-                const city = formData.get('city');
-                const district = formData.get('district');
-                const aspects = formData.getAll('aspects');
+                const birthPlace = formData.get('birthPlace');
                 
                 // 模拟八字排盘结果
                 const result = {
                     basicInfo: {
                         name: fullName,
                         gender: gender === 'male' ? '男' : '女',
-                        birthDateTime: `${birthDate} ${birthTime}`,
-                        location: `${province}${city}${district}`,
+                        birthDateTime: `${birthYear}年${birthMonth}月${birthDay}日 ${birthTime}时`,
+                        location: birthPlace,
                         bazi: {
                             year: '甲子',
                             month: '乙丑',
@@ -55,36 +93,31 @@ function analyzeBazi(formData) {
                         }
                     },
                     analysis: {
-                        personality: aspects.includes('personality') ? {
-                            title: '性格分析',
-                            content: '性格开朗，富有同情心，具有领导才能。但有时过于理想化，需要更务实。',
+                        overview: {
+                            title: '八字分析',
+                            content: '您的八字格局稳健，具有良好的发展潜力。命主聪明伶俐，具有较强的学习能力和创造力。',
                             score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        career: aspects.includes('career') ? {
+                        },
+                        career: {
                             title: '事业运势',
-                            content: '今年事业运势较好，有升职加薪机会。建议把握6月和9月的关键机遇。',
+                            content: '事业运势较好，有升职加薪机会。建议把握6月和9月的关键机遇。',
                             score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        wealth: aspects.includes('wealth') ? {
+                        },
+                        wealth: {
                             title: '财运分析',
                             content: '财运稳定上升，适合进行稳健型投资。今年下半年可能有意外收获。',
                             score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        love: aspects.includes('love') ? {
+                        },
+                        love: {
                             title: '感情姻缘',
                             content: '桃花运旺盛，易遇到心仪对象。已婚者夫妻关系和睦，感情稳定。',
                             score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        health: aspects.includes('health') ? {
+                        },
+                        health: {
                             title: '健康运势',
                             content: '整体健康状况良好，但要注意消化系统，建议规律作息，适量运动。',
                             score: Math.floor(Math.random() * 20 + 80)
-                        } : null,
-                        yearly: aspects.includes('yearly') ? {
-                            title: '流年运势',
-                            content: '今年整体运势平稳，春季最为顺遂。需注意秋季可能的小波折。',
-                            score: Math.floor(Math.random() * 20 + 80)
-                        } : null
+                        }
                     },
                     suggestions: [
                         '建议在事业上保持积极进取的态度',
