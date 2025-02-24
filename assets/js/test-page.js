@@ -183,50 +183,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const backButton = document.querySelector('.back-button');
     if (backButton) {
         backButton.addEventListener('click', function(e) {
-            e.preventDefault(); // 阻止默认的链接跳转
-            
-            // 添加loading状态
-            this.classList.add('loading');
-            
-            // 检查是否有未保存的更改
-            const hasUnsavedChanges = document.querySelector('.test-in-progress');
-            
-            if (hasUnsavedChanges) {
-                // 如果有未保存的更改，显示确认对话框
-                if (confirm('您有未完成的测试，确定要返回吗？')) {
-                    performBack();
-                } else {
-                    this.classList.remove('loading');
-                }
-            } else {
-                performBack();
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            if (href) {
+                window.location.href = href;
             }
         });
-    }
-    
-    // 执行返回操作
-    function performBack() {
-        try {
-            // 尝试使用history back
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                // 如果没有历史记录，则使用href跳转
-                const backButton = document.querySelector('.back-button');
-                if (backButton && backButton.getAttribute('href')) {
-                    window.location.href = backButton.getAttribute('href');
-                }
-            }
-        } catch (error) {
-            console.error('返回操作失败:', error);
-            // 移除loading状态
-            const backButton = document.querySelector('.back-button');
-            if (backButton) {
-                backButton.classList.remove('loading');
-            }
-            // 显示错误提示
-            utils.showError('返回失败，请重试');
-        }
     }
 });
 
